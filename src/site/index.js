@@ -1,11 +1,13 @@
 import xs from 'xstream'
 import { run } from '@cycle/run'
-import { makeDOMDriver, h1 } from '@cycle/dom'
+import { makeDOMDriver } from '@cycle/dom'
+import Snabbdom from 'snabbdom-pragma'
 
-function main() {
+function Site () {
+  console.log('ssss')
   const sinks = {
     DOM: xs.periodic(1000).map(i =>
-      h1('' + i + ' seconds elapsed')
+      <h1>{'' + i + ' seconds elapsed'}</h1>
     )
   };
   return sinks
@@ -15,4 +17,4 @@ const drivers = {
   DOM: makeDOMDriver('#app')
 }
 
-run(main, drivers)
+run(Site, drivers)

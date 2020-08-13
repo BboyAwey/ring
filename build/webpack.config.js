@@ -23,7 +23,11 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: ['@babel/preset-env'],
+            plugins: [
+              'syntax-jsx',
+              ['transform-react-jsx', {'pragma': 'Snabbdom.createElement'}]
+            ]
           }
         }
       }
@@ -32,7 +36,6 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new HtmlWebpackPlugin({
-      title: 'Development',
       template: resolve('../src/site/assets/index.html')
     })
   ]
