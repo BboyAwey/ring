@@ -7,7 +7,7 @@ module.exports = {
   entry: resolve('../src/site/index.js'),
   output: {
     filename: 'index.js',
-    path: resolve('../site'),
+    path: resolve('../site')
   },
   devServer: {
     contentBase: './site',
@@ -15,18 +15,31 @@ module.exports = {
   },
   mode: 'development',
   devtool: 'source-map',
+  stats: {
+    chunks: false,
+    modules: false,
+    children: false
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
+        enforce: 'pre',
+        test: /\.js(x?)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+        }
+      },
+      {
+        test: /\.js(x?)$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
             plugins: [
               'syntax-jsx',
-              ['transform-react-jsx', {'pragma': 'Snabbdom.createElement'}]
+              ['transform-react-jsx', { pragma: 'Snabbdom.createElement' }]
             ]
           }
         }
