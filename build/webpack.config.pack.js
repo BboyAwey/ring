@@ -10,7 +10,7 @@ module.exports = {
     path: resolve('../site')
   },
   devServer: {
-    contentBase: './site',
+    contentBase: resolve('../site'),
     hot: true
   },
   mode: 'development',
